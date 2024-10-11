@@ -73,8 +73,23 @@ public class SpriteNormalMapAnimator : MonoBehaviour
 
                 currentNormalTex = normal_tex;
 
-                sr.sharedMaterial.SetTexture("_MainNormal", currentNormalTex);
+                SetNormalTex(currentNormalTex);
             }
+        }
+    }
+
+    void SetNormalTex(Texture2D normal_tex)
+    {
+        // create material instances only in play mode
+        // cant do that in edit mode because "memory leak"
+
+        if(Application.isPlaying)
+        {
+            sr.material.SetTexture("_MainNormal", normal_tex);
+        }
+        else
+        {
+            sr.sharedMaterial.SetTexture("_MainNormal", normal_tex);
         }
     }
 
