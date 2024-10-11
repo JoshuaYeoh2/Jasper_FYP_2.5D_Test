@@ -69,14 +69,11 @@ public class SpriteNormalMapAnimator : MonoBehaviour
                 Texture2D normal_tex = ConvertSpriteToTexture2D(normalSprite);
 
                 // Destroy the previous texture to prevent memory leaks
-                if (currentNormalTexture != null)
-                {
-                    Destroy(currentNormalTexture);
-                }
+                TryCleanUp(currentNormalTex);
 
-                currentNormalTexture = normal_tex;
+                currentNormalTex = normal_tex;
 
-                sr.material.SetTexture("_MainNormal", currentNormalTexture);
+                sr.material.SetTexture("_MainNormal", currentNormalTex);
             }
         }
     }
@@ -105,14 +102,25 @@ public class SpriteNormalMapAnimator : MonoBehaviour
     // ============================================================================
 
     // Store the current normal texture
-    Texture2D currentNormalTexture; 
+    Texture2D currentNormalTex; 
 
     // Cleanup on destroy
     void OnDestroy()
     {
-        if(currentNormalTexture != null)
+        TryCleanUp(currentNormalTex);
+    }
+
+    void TryCleanUp(Texture2D tex)
+    {
+        if(!tex) return;
+
+        if(Application.isEditor)
         {
-            Destroy(currentNormalTexture);
+            DestroyImmediate(tex); // Use DestroyImmediate in edit mode
+        }
+        else
+        {
+            Destroy(tex); // Use Destroy in play mode
         }
     }
 }
