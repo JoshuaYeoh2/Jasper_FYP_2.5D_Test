@@ -73,7 +73,7 @@ public class SpriteNormalMapAnimator : MonoBehaviour
 
                 currentNormalTex = normal_tex;
 
-                sr.material.SetTexture("_MainNormal", currentNormalTex);
+                sr.sharedMaterial.SetTexture("_MainNormal", currentNormalTex);
             }
         }
     }
