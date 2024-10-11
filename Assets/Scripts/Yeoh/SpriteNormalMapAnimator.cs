@@ -29,17 +29,22 @@ public class SpriteNormalMapAnimator : MonoBehaviour
 
     void EditorUpdate()
     {
-        if(!Application.isPlaying) UpdateNormal();
+        if(!Application.isPlaying) UpdateInterval();
     }
 #endif
 
     // ============================================================================
     
+    void Start()
+    {
+        UpdateNormal();
+    }
+    
     void Update()
     {
         if(!Application.isPlaying) return;
 
-        UpdateNormal();
+        UpdateInterval();
     }
     
     // ============================================================================
@@ -53,7 +58,7 @@ public class SpriteNormalMapAnimator : MonoBehaviour
 
     public bool enable=true;
 
-    void UpdateNormal()
+    void UpdateInterval()
     {
         if(!enable) return;
 
@@ -64,18 +69,22 @@ public class SpriteNormalMapAnimator : MonoBehaviour
         {
             timer = 0f;
 
-            if(normalSprite)
-            {
-                Texture2D normal_tex = ConvertSpriteToTexture2D(normalSprite);
-
-                // Destroy the previous texture to prevent memory leaks
-                TryCleanUp(currentNormalTex);
-
-                currentNormalTex = normal_tex;
-
-                SetNormalTex(currentNormalTex);
-            }
+            UpdateNormal();
         }
+    }
+
+    void UpdateNormal()
+    {
+        if(!normalSprite) return;
+
+        Texture2D normal_tex = ConvertSpriteToTexture2D(normalSprite);
+
+        // Destroy the previous texture to prevent memory leaks
+        TryCleanUp(currentNormalTex);
+
+        currentNormalTex = normal_tex;
+
+        SetNormalTex(currentNormalTex);
     }
 
     void SetNormalTex(Texture2D normal_tex)
