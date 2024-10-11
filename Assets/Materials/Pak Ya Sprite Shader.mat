@@ -60,7 +60,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0.5
-    - _MainNormalStrength: 1
+    - _MainNormalStrength: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors: []
