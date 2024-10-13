@@ -34,7 +34,7 @@
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "Scattering.AvoidOverlappingObjects",
-                "value": "{\"m_Value\":true}"
+                "value": "{\"m_Value\":false}"
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
@@ -44,6 +44,11 @@
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "Brush.HideWireframe",
+                "value": "{\"m_Value\":true}"
+            },
+            {
+                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "Mesh.RebuildColliders",
                 "value": "{\"m_Value\":true}"
             },
             {
@@ -74,12 +79,17 @@
             {
                 "type": "UnityEditor.Polybrush.PrefabLoadout, Unity.Polybrush.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ScatteringEditor.userLoadout",
-                "value": "{\"m_Value\":{\"infos\":[]}}"
+                "value": "{\"m_Value\":{\"infos\":[{\"palette\":{\"fileID\":11400000,\"guid\":\"67ee008e125fb1d49a51d4a9c4b143af\",\"type\":2},\"prefab\":{\"fileID\":1477662918003338100,\"guid\":\"2d8d1b1925790244888d93253e7e7f56\",\"type\":3}},{\"palette\":{\"fileID\":11400000,\"guid\":\"67ee008e125fb1d49a51d4a9c4b143af\",\"type\":2},\"prefab\":{\"fileID\":1477662918003338100,\"guid\":\"8fe19f26791a0c049b02a97bf0db56fa\",\"type\":3}},{\"palette\":{\"fileID\":11400000,\"guid\":\"67ee008e125fb1d49a51d4a9c4b143af\",\"type\":2},\"prefab\":{\"fileID\":1477662918003338100,\"guid\":\"90e21b16f10039c48ba73b1335696848\",\"type\":3}},{\"palette\":{\"fileID\":11400000,\"guid\":\"67ee008e125fb1d49a51d4a9c4b143af\",\"type\":2},\"prefab\":{\"fileID\":1477662918003338100,\"guid\":\"82097df909a614948a0a9eb063ce1b00\",\"type\":3}},{\"palette\":{\"fileID\":11400000,\"guid\":\"67ee008e125fb1d49a51d4a9c4b143af\",\"type\":2},\"prefab\":{\"fileID\":1477662918003338100,\"guid\":\"c117c96b491f20b4eb1ba5f107144caa\",\"type\":3}},{\"palette\":{\"fileID\":11400000,\"guid\":\"67ee008e125fb1d49a51d4a9c4b143af\",\"type\":2},\"prefab\":{\"fileID\":1477662918003338100,\"guid\":\"efcc52b52d15d01458d9839f14111279\",\"type\":3}},{\"palette\":{\"fileID\":11400000,\"guid\":\"67ee008e125fb1d49a51d4a9c4b143af\",\"type\":2},\"prefab\":{\"fileID\":1477662918003338100,\"guid\":\"eaf64a3ad5e59c54c8904bc21da5e865\",\"type\":3}},{\"palette\":{\"fileID\":11400000,\"guid\":\"67ee008e125fb1d49a51d4a9c4b143af\",\"type\":2},\"prefab\":{\"fileID\":1477662918003338100,\"guid\":\"24d5a291557a86846be8c75d7943b439\",\"type\":3}}]}}"
             },
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "ScatteringEditor.PreviewThumSize",
                 "value": "{\"m_Value\":64}"
+            },
+            {
+                "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "GI.WorkflowMode",
+                "value": "{\"m_Value\":1}"
             },
             {
                 "type": "UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
