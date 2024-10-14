@@ -207,7 +207,11 @@ public class JumpScript : MonoBehaviour
     {
         Collider[] colliders = Physics.OverlapBox(transform.position + boxCenterOffset, boxSize, transform.rotation, groundLayer);
 
-        return colliders.Length > 0;
+        foreach(var coll in colliders)
+        {
+            if(!coll.isTrigger) return true;
+        }
+        return false;
     }
 
     void OnDrawGizmosSelected()
