@@ -9,13 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4880984263526940563}
-  - component: {fileID: 4454731001802563858}
   m_Layer: 0
   m_Name: Wood Pallet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4880984263526940563
 Transform:
@@ -33,33 +32,6 @@ Transform:
   - {fileID: 3269130677204355956}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &4454731001802563858
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3298230900920920981}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &3086356054613978271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b9e5cf86ca50b6e43883a9926f647775, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -129,7 +101,13 @@ PrefabInstance:
       addedObject: {fileID: 3817827480892696145}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b9e5cf86ca50b6e43883a9926f647775, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1228432500442296455}
+      addedObject: {fileID: 3207148989268243609}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b9e5cf86ca50b6e43883a9926f647775, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7186038737916966101}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b9e5cf86ca50b6e43883a9926f647775, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5370082753316499187}
   m_SourcePrefab: {fileID: 100100000, guid: b9e5cf86ca50b6e43883a9926f647775, type: 3}
 --- !u!1 &2744268509174911438 stripped
 GameObject:
@@ -157,7 +135,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.0000005, y: 5.000001, z: 0.5000001}
   m_Center: {x: -2.4999998, y: 2.5000005, z: -0.000000014901165}
---- !u!114 &1228432500442296455
+--- !u!114 &3207148989268243609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,13 +144,56 @@ MonoBehaviour:
   m_GameObject: {fileID: 2744268509174911438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fde1f426463d02140ac38a54b3fb4d2c, type: 3}
+  m_Script: {fileID: 11500000, guid: d626fb1a29584d1438a851e6499b3cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entryDirection: {x: 0, y: 1, z: 0}
+  triggerExpansion: 2
+  collidersToIgnore: []
+  entryDirection: {x: 0, y: -1, z: 0}
   localDirection: 0
-  triggerScale: {x: 1.25, y: 1.25, z: 1.25}
-  penetrationDepthThreshold: 0.2
+--- !u!114 &7186038737916966101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744268509174911438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 3a3a83de80d545b478a6105f029cd823, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &5370082753316499187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744268509174911438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00796c9cb54beba43b664790f54560ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempPakYa: {fileID: 0}
 --- !u!4 &3269130677204355956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b9e5cf86ca50b6e43883a9926f647775, type: 3}
