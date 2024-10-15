@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 8412114488542826597}
   - component: {fileID: 1511195835895261633}
   - component: {fileID: 3611210669050738406}
+  - component: {fileID: 5012553719974128323}
   - component: {fileID: 4368493988338249805}
   - component: {fileID: 2535672027372677568}
   m_Layer: 3
@@ -305,10 +306,6 @@ MonoBehaviour:
   baseMaxSpeed: 0
   acceleration: 10
   deceleration: 10
-  turnAxis: {x: 0, y: 1, z: 0}
-  turnSpeed: 1000
-  baseTurnSpeed: 0
-  linearTurn: 1
   velocity: 0
 --- !u!114 &3611210669050738406
 MonoBehaviour:
@@ -324,6 +321,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dirX: 0
   canMove: 1
+--- !u!114 &5012553719974128323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987163089559660572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08f7221b95ed9a4a8a133bc263bd2d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: 1000
+  baseTurnSpeed: 0
+  turnAxis: {x: 0, y: 1, z: 0}
+  linearTurn: 1
 --- !u!114 &4368493988338249805
 MonoBehaviour:
   m_ObjectHideFlags: 0

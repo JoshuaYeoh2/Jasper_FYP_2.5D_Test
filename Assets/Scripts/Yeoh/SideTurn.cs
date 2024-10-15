@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ForceVehicle))]
+[RequireComponent(typeof(TurnScript))]
 
 public class SideTurn : MonoBehaviour
 {
-    ForceVehicle vehicle;
+    TurnScript turn;
 
     void Awake()
     {
-        vehicle = GetComponent<ForceVehicle>();
+        turn = GetComponent<TurnScript>();
     }
 
     void FixedUpdate()
     {
-        vehicle.Turn(faceR ? Vector3.right : Vector3.left);
+        turn.UpdateTurn(faceR ? Vector3.right : Vector3.left);
     }
 
     // ============================================================================
@@ -50,6 +50,6 @@ public class SideTurn : MonoBehaviour
         sprite.flipX = !faceR;
     }
 
-    [Header("Optional")]
+    [Header("If Using Billboard")]
     public SpriteRenderer sprite;
 }

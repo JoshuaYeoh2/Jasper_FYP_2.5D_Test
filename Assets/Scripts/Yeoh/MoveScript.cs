@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class ForceVehicle : MonoBehaviour
+public class MoveScript : MonoBehaviour
 {
     Rigidbody rb;
 
@@ -12,7 +12,6 @@ public class ForceVehicle : MonoBehaviour
     {
         rb=GetComponent<Rigidbody>();
         baseMaxSpeed = maxSpeed;
-        baseTurnSpeed = turnSpeed;
     }
 
     // ============================================================================
@@ -24,7 +23,9 @@ public class ForceVehicle : MonoBehaviour
     public float acceleration=10;
     public float deceleration=10;
 
-    public void Move(float magnitude, Vector3 direction)
+    // ============================================================================
+
+    public void UpdateMove(float magnitude, Vector3 direction)
     {
         float accelRate = Mathf.Abs(magnitude)>0 ? acceleration : deceleration; // use decelerate value if no input, and vice versa
     
@@ -34,6 +35,8 @@ public class ForceVehicle : MonoBehaviour
 
         rb.AddForce(direction * movement);
     }
+
+    // ============================================================================
 
     int tweenSpeedLt=0;
     public void TweenSpeed(float to, float time=.25f)
@@ -48,44 +51,6 @@ public class ForceVehicle : MonoBehaviour
                 .id;
         }
         else maxSpeed=to;
-    }
-
-    // ============================================================================
-
-    [Header("Turn")]
-    public Vector3 turnAxis = new(0, 1, 0);
-    public float turnSpeed=10;
-    [HideInInspector]
-    public float baseTurnSpeed;
-    public bool linearTurn;
-
-    public void Turn(Vector3 dir)
-    {
-        if(dir==Vector3.zero) return;
-
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-
-        lookRotation = Quaternion.Euler(
-            turnAxis.x>0 ? lookRotation.eulerAngles.x : 0,
-            turnAxis.y>0 ? lookRotation.eulerAngles.y : 0,
-            turnAxis.z>0 ? lookRotation.eulerAngles.z : 0);
-
-        transform.rotation = linearTurn ?
-            Quaternion.Lerp(transform.rotation, lookRotation, turnSpeed * Time.deltaTime): // linearly face the direction
-            Quaternion.Slerp(transform.rotation, lookRotation, turnSpeed * Time.deltaTime); // smoothly face the direction
-    }
-
-    // ============================================================================
-
-    // both move and turn
-    public void Steer(Vector3 vector)
-    {
-        Turn(vector.normalized);
-
-        float speed = Mathf.Clamp(vector.magnitude, 0, maxSpeed); // never go past max speed
-
-        Move(speed, transform.up);
-        Move(0, transform.right);
     }
 
     // ============================================================================

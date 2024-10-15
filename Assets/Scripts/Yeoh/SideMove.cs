@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
-[RequireComponent(typeof(ForceVehicle))]
+[RequireComponent(typeof(MoveScript))]
 
 public class SideMove : MonoBehaviour
 {
-    ForceVehicle vehicle;
+    MoveScript move;
     SideTurn turn; // optional
 
     void Awake()
     {
-        vehicle = GetComponent<ForceVehicle>();
+        move = GetComponent<MoveScript>();
         turn = GetComponent<SideTurn>();
     }
 
@@ -46,10 +46,10 @@ public class SideMove : MonoBehaviour
 
     void Move()
     {
-        dirX = vehicle.Round(dirX, 1);
+        dirX = move.Round(dirX, 1);
         dirX = Mathf.Clamp(dirX, -1, 1);
 
-        vehicle.Move(vehicle.maxSpeed * dirX, Vector3.right);
+        move.UpdateMove(move.maxSpeed * dirX, Vector3.right);
 
         if(turn)
         turn.TryTurn(dirX);

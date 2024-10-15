@@ -15,16 +15,33 @@ public class AgentJump : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
+    // ============================================================================
+    
+    public float jumpSeconds=.5f;
+    bool isJumping;
+
     void Update()
     {
+        // use custom code instead
         agent.autoTraverseOffMeshLink = false;
+
+        if(!isJumping && agent.isOnOffMeshLink)
+        {
+            Jump();
+        }
+
+        if(isJumping)
+        {
+
+        }
     }
 
-    // ============================================================================
+    void Jump()
+    {
+        isJumping=true;
+    }
 
-    public float jumpSeconds=.5f;
-
-    bool isJumping;
+    
     
     // ============================================================================
 
