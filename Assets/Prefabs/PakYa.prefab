@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7274980459159228368}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13052616, y: -0, z: -0, w: 0.9914449}
-  m_LocalPosition: {x: -0.188, y: -0.3, z: -0.02}
+  m_LocalRotation: {x: 0.13052617, y: -0, z: -0, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4032536735459076646}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1, y: 0, z: 0}
 --- !u!212 &4466723156777370603
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableBillboard: 1
   fixedUpdate: 0
-  onlyY: 0
+  rotateAxis: {x: 1, y: 1, z: 1}
 --- !u!114 &6876849668752172755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 8412114488542826597}
   - component: {fileID: 1511195835895261633}
   - component: {fileID: 3611210669050738406}
+  - component: {fileID: 4368493988338249805}
   - component: {fileID: 2535672027372677568}
   m_Layer: 3
   m_Name: PakYa
@@ -301,12 +302,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  defMaxSpeed: 0
+  baseMaxSpeed: 0
   acceleration: 10
   deceleration: 10
-  turnSpeed: 10
-  defTurnSpeed: 0
-  linearTurn: 0
+  turnAxis: {x: 0, y: 1, z: 0}
+  turnSpeed: 1000
+  baseTurnSpeed: 0
+  linearTurn: 1
   velocity: 0
 --- !u!114 &3611210669050738406
 MonoBehaviour:
@@ -320,8 +322,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a010c1a4d7df435429b5810874b7b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 1
   dirX: 0
+  canMove: 1
+--- !u!114 &4368493988338249805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987163089559660572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8621508b9e9d96f41896b91532a5224a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   faceR: 1
   reverse: 0
   sprite: {fileID: 4466723156777370603}

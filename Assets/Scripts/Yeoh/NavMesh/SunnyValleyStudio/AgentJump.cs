@@ -13,19 +13,18 @@ public class AgentJump : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.autoTraverseOffMeshLink = false;
     }
 
     void Update()
     {
-        
+        agent.autoTraverseOffMeshLink = false;
     }
 
     // ============================================================================
 
-    public float jumpTravelTime=.5f;
+    public float jumpSeconds=.5f;
 
-    bool onNavMeshLink;
+    bool isJumping;
     
     // ============================================================================
 

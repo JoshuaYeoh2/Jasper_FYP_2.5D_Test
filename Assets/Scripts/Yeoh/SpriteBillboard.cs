@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [ExecuteInEditMode]
 
 public class SpriteBillboard : MonoBehaviour
 {
-    public bool enableBillboard=true;
 
 #if UNITY_EDITOR
+
     void OnEnable()
     {
         EditorApplication.update += EditorUpdate;
@@ -22,9 +25,18 @@ public class SpriteBillboard : MonoBehaviour
 
     void EditorUpdate()
     {
-        if(!Application.isPlaying) Billboard();
+        if(Application.isPlaying) return;
+        
+        Billboard();
     }
+
 #endif
+
+    // ============================================================================
+
+    public bool enableBillboard=true;
+    public bool fixedUpdate=true;
+    public Vector3 rotateAxis = Vector3.one;
 
     void Update()
     {
@@ -33,8 +45,6 @@ public class SpriteBillboard : MonoBehaviour
         if(!fixedUpdate) Billboard();
     }
 
-    public bool fixedUpdate=true;
-    
     void FixedUpdate()
     {
         if(!Application.isPlaying) return;
@@ -42,13 +52,15 @@ public class SpriteBillboard : MonoBehaviour
         if(fixedUpdate) Billboard();
     }
 
-    public bool onlyY;
-
     void Billboard()
     {
         if(!enableBillboard) return;
 
-        if(onlyY) transform.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
-        else transform.rotation = Camera.main.transform.rotation;
+        Vector3 camera_angles = Camera.main.transform.rotation.eulerAngles;
+
+        transform.rotation = Quaternion.Euler(
+            rotateAxis.x>0 ? camera_angles.x : 0,
+            rotateAxis.y>0 ? camera_angles.y : 0,
+            rotateAxis.z>0 ? camera_angles.z : 0);
     }
 }

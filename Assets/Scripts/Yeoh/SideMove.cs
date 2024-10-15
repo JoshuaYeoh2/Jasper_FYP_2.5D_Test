@@ -9,29 +9,22 @@ using UnityEngine.InputSystem;
 public class SideMove : MonoBehaviour
 {
     ForceVehicle vehicle;
+    SideTurn turn; // optional
 
     void Awake()
     {
         vehicle = GetComponent<ForceVehicle>();
+        turn = GetComponent<SideTurn>();
     }
 
-    // Input ============================================================================
+    // ============================================================================
 
-    Vector2 moveInput;
-
-    void OnInputMove(InputValue value)
-    {
-        moveInput = value.Get<Vector2>();        
-    }
-
-    void Update()
-    {
-        UpdateMoveInput();
-    }   
+    public float dirX;
 
     public bool canMove=true;
+    bool isMoving;
 
-    void UpdateMoveInput()
+    void Update()
     {
         if(!canMove) return;
 
@@ -41,11 +34,6 @@ public class SideMove : MonoBehaviour
 
         isMoving=true;
     }
-
-    // ============================================================================
-
-    bool isMoving;
-    public float dirX;
 
     void FixedUpdate()
     {
@@ -63,40 +51,18 @@ public class SideMove : MonoBehaviour
 
         vehicle.Move(vehicle.maxSpeed * dirX, Vector3.right);
 
-        TryFlip();
+        if(turn)
+        turn.TryTurn(dirX);
     }
 
     // ============================================================================
 
-    [Header("Flip")]
-    public bool faceR=true;
-    public bool reverse;
-    public SpriteRenderer sprite;
+    Vector2 moveInput;
 
-    void TryFlip()
+    // temp
+    void OnInputMove(InputValue value)
     {
-        if(reverse)
-        {
-            if((dirX>0 && faceR) || (dirX<0 && !faceR))
-            {
-                Flip();
-            }
-        }
-        else
-        {
-            if((dirX<0 && faceR) || (dirX>0 && !faceR))
-            {
-                Flip();
-            }
-        }
+        moveInput = value.Get<Vector2>();        
     }
-
-    public void Flip()
-    {
-        transform.Rotate(0, 180, 0);
-        faceR=!faceR;
-
-        if(sprite)
-        sprite.flipX = !faceR;
-    }
+    
 }
