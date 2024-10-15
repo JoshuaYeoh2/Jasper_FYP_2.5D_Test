@@ -1,0 +1,137 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.AI.Navigation;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Events;
+
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(TurnScript))]
+
+public class AgentJump : MonoBehaviour
+{
+    NavMeshAgent agent;
+    TurnScript turn;
+    Rigidbody rb; // optional
+
+    void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        turn = GetComponent<TurnScript>();
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        // use custom code instead
+        agent.autoTraverseOffMeshLink = false;
+    }
+
+    // ============================================================================
+    
+    [Min(.01f)]
+    public float jumpSeconds=.8f;
+    bool isJumping;
+
+    void FixedUpdate()
+    {
+        if(!isJumping && agent.isOnOffMeshLink)
+        {
+            Jump();
+        }
+
+        UpdateFaceJumpDir();
+
+        if(rb)
+        rb.isKinematic = isJumping;
+    }
+
+    void Jump()
+    {
+        isJumping=true;
+
+        if(jumping_crt!=null) StopCoroutine(jumping_crt);
+        jumping_crt = StartCoroutine(Jumping());
+
+        OnJump?.Invoke();
+    }
+
+    Coroutine jumping_crt;
+    IEnumerator Jumping()
+    {
+        NavMeshLink link = (NavMeshLink) agent.navMeshOwner;
+
+        Spline spline = link.GetComponent<Spline>();
+        
+        Vector3 agent_start_pos = agent.transform.position;
+
+        bool is_reversed = IsJumpReversed(link);
+
+        float seconds=0;
+
+        while(seconds < jumpSeconds)
+        {
+            seconds += Time.deltaTime;
+
+            float lerp01 = Mathf.Clamp01(seconds / jumpSeconds);
+
+            // invert value if reversed
+            lerp01 = is_reversed ? 1-lerp01 : lerp01;
+
+            agent.transform.position = is_reversed ?
+                spline.CalcPosFromEnd(lerp01, agent_start_pos) :
+                spline.CalcPosFromStart(lerp01, agent_start_pos);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        JumpFinished();
+
+        yield return new WaitForSeconds(.1f);
+
+        isJumping = false;
+    }
+
+    bool IsJumpReversed(NavMeshLink link)
+    {
+        // world positions
+        Vector3 start_pos = link.transform.TransformPoint(link.startPoint);
+        Vector3 end_pos = link.transform.TransformPoint(link.endPoint);
+
+        // distances
+        float agent_to_start = Vector3.Distance(agent.transform.position, start_pos);
+        float agent_to_end = Vector3.Distance(agent.transform.position, end_pos);
+
+        // if closer to end point than start point
+        return agent_to_end < agent_to_start;
+    }
+
+    // ============================================================================
+
+    void UpdateFaceJumpDir()
+    {
+        if(!isJumping) return;
+
+        Vector3 end_pos = agent.currentOffMeshLinkData.endPos;
+
+        Vector3 dir = (end_pos - agent.transform.position).normalized;
+
+        turn.UpdateTurn(dir);
+    }
+    
+    // ============================================================================
+
+    void JumpFinished()
+    {
+        agent.CompleteOffMeshLink();
+
+        OnLand?.Invoke();
+    }
+
+    // ============================================================================
+
+    public UnityEvent OnJump;
+    public UnityEvent OnLand;
+}
+
+// Tutorial by SunnyValleyStudio YouTube
