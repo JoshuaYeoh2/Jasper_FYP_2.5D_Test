@@ -71,7 +71,8 @@ public class Spline : MonoBehaviour
 
     [Header("Debug")]
     public bool showGizmos=true;
-    public int granularity=5;
+    public bool showPoints;
+    public int granularity=10;
     public Color splineColor = Color.magenta;
 
     void OnDrawGizmos()
@@ -87,6 +88,7 @@ public class Spline : MonoBehaviour
 
     void DrawSplinePoints(float sphere_size=.1f)
     {
+        if(!showPoints) return;
         Gizmos.DrawSphere(start.position, sphere_size);
         Gizmos.DrawSphere(middle.position, sphere_size);
         Gizmos.DrawSphere(end.position, sphere_size);
@@ -105,3 +107,5 @@ public class Spline : MonoBehaviour
     }
 
 }
+
+// Tutorial by SunnyValleyStudio YouTube

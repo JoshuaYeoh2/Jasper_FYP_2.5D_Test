@@ -17,7 +17,7 @@ public class MoveScript : MonoBehaviour
     // ============================================================================
 
     [Header("Move")]
-    public float maxSpeed=3;
+    public float maxSpeed=10;
     [HideInInspector]
     public float baseMaxSpeed;
     public float acceleration=10;
@@ -81,6 +81,6 @@ public class MoveScript : MonoBehaviour
             factor *= 10;
         }
 
-        return Mathf.Round(num * factor) / (float)factor;
+        return Mathf.Round(num * factor) / factor;
     }
 }

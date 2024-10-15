@@ -18,13 +18,29 @@ public class SteerScript : MonoBehaviour
 
     // ============================================================================
 
-    public void Steer(Vector3 vector)
+    public void UpdateSteer(Vector3 vector)
     {
         turn.UpdateTurn(vector.normalized);
 
-        float speed = Mathf.Clamp(vector.magnitude, 0, move.maxSpeed); // never go past max speed
+        // never go past max speed
+        float speed = Mathf.Clamp(vector.magnitude, 0, move.maxSpeed);
 
-        move.UpdateMove(speed, transform.up);
+        move.UpdateMove(speed, transform.forward);
         move.UpdateMove(0, transform.right);
+    }
+
+    // ============================================================================
+
+    public float GetMoveSpeed()
+    {
+        return move.maxSpeed;
+    }
+    public float GetMoveAcceleration()
+    {
+        return move.acceleration;
+    }
+    public float GetTurnSpeed()
+    {
+        return turn.turnSpeed;
     }
 }

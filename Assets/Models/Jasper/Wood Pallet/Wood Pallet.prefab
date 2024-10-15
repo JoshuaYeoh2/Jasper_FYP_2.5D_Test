@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerExpansion: 2
   collidersToIgnore: []
-  entryDirection: {x: 0, y: -1, z: 0}
+  entryDirection: {x: 0, y: 1, z: 0}
   localDirection: 0
 --- !u!114 &7186038737916966101
 MonoBehaviour:

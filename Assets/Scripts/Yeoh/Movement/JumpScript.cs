@@ -73,8 +73,9 @@ public class JumpScript : MonoBehaviour
         if(isJumpCooling) return;
         StartCoroutine(JumpCooling());
 
+        if(!rb.isKinematic)
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-
+        
         rb.AddForce(Vector3.up*jumpForce, ForceMode.Impulse);
 
         jumpBufferLeft = -1;

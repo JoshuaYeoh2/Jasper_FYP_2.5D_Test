@@ -145,7 +145,7 @@ public class PlatformEffector3D : MonoBehaviour
 
         float dot = Vector3.Dot(PassthroughDirection(), rb_dir);
 
-        bool shouldPass = dot < 0;
+        bool shouldPass = dot > 0;
 
         Physics.IgnoreCollision(myColl, other, shouldPass);
     }
