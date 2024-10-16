@@ -35,8 +35,8 @@ public class AgentJump : MonoBehaviour
         UpdateJump();
         UpdateFaceJumpDir();
 
-        if(rb)
-        rb.isKinematic = isJumping;
+        if(rb && isJumping)
+        rb.isKinematic = true;
     }
 
     // ============================================================================
@@ -55,6 +55,9 @@ public class AgentJump : MonoBehaviour
 
         isJumping=true;
         jumpProgress=0;
+
+        if(rb)
+        rb.isKinematic = true;
 
         NavMeshLink link = (NavMeshLink) agent.navMeshOwner;
 
@@ -125,6 +128,9 @@ public class AgentJump : MonoBehaviour
     {
         isJumping=false;
         jumpProgress=0;
+
+        if(rb)
+        rb.isKinematic = false;
 
         agent.CompleteOffMeshLink();
 
